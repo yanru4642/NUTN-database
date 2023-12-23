@@ -7,9 +7,20 @@
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='../css/bootstrap.css'>
     
+    <!-- Custom CSS -->
+    <style>
+      .gradient-custom {
+        background: rgb(38,70,126);
+        background: linear-gradient(132deg, rgba(23,54,106,1) 0%, rgba(38,70,126,1) 35%, rgba(116,106,187,1) 72%, rgba(180,106,187,1) 100%);
+      }
+      .bg-glass {
+        background-color: rgba(220, 220, 220, 0.8) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
     <title>Database</title>
   </head>
-  <body>
+  <body class="min-vh-100 gradient-custom">
     <script src="header.js"></script>
     <script> document.write(header);</script>
     <h1>採購首頁</h1>
