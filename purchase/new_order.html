@@ -21,7 +21,7 @@
         background-color: rgba(220, 220, 220, 0.8) !important;
         backdrop-filter: saturate(200%) blur(25px);
       }
-  </style>
+    </style>
     <title>新增訂單</title>
   </head>
   <body class="min-vh-100 gradient-custom">
@@ -47,9 +47,9 @@
       </div>
       <div class="my-5">
         <div class="table-responsive">
-          <table class="table table-striped caption-top">
+          <table class="table table-striped table-hover table-bordered caption-top">
             <caption class="fs-3">商品清單</caption>
-            <thead>
+            <thead class="table-dark text-center">
               <tr>
                 <th scope="col">商品型號</th>
                 <th scope="col">供應商</th>
@@ -59,22 +59,22 @@
                 <th scope="col">操作</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="font-monospace text-end">
               <tr>
-                <td>0001</td>
-                <td>random</td>
+                <td class="text-center">0001</td>
+                <td class="text-center">random</td>
                 <td>data</td>
                 <td>random</td>
                 <td>data</td>
-                <td><button type="button" class="btn btn-danger btn-sm remove-btn" onclick="removeItem(this)">移除商品</button></td>
+                <td class="text-center"><button type="button" class="btn btn-danger btn-sm remove-btn" onclick="removeItem(this)">移除商品</button></td>
               </tr>
               <tr>
-                <td>0002</td>
-                <td>random</td>
+                <td class="text-center">0002</td>
+                <td class="text-center">random</td>
                 <td>data</td>
                 <td>random</td>
                 <td>data</td>
-                <td><button type="button" class="btn btn-danger btn-sm remove-btn" onclick="removeItem(this)">移除商品</button></td>
+                <td class="text-center"><button type="button" class="btn btn-danger btn-sm remove-btn" onclick="removeItem(this)">移除商品</button></td>
               </tr>
             </tbody>
           </table>
@@ -82,7 +82,7 @@
       </div>
       <div class="row">
         <div class="col mb-3">
-          <button type="button" class="btn btn-secondary" id="cancelOrderBtn">取消訂單</button>
+          <button type="button" class="btn btn-secondary" id="cancelOrderBtn">回主頁</button>
           <button type="button" class="btn btn-primary" id="createOrderBtn">新增訂單</button>
         </div>
       </div>

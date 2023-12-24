@@ -10,21 +10,61 @@
     <!-- Custom CSS -->
     <style>
       .gradient-custom {
-        background: rgb(38,70,126);
+        background: #26467e;
         background: linear-gradient(132deg, rgba(23,54,106,1) 0%, rgba(38,70,126,1) 35%, rgba(116,106,187,1) 72%, rgba(180,106,187,1) 100%);
       }
       .bg-glass {
         background-color: rgba(220, 220, 220, 0.8) !important;
         backdrop-filter: saturate(200%) blur(25px);
       }
+      .card-rounded{
+        border-radius: 1.3rem;
+      }
     </style>
     <title>Database</title>
   </head>
   <body class="min-vh-100 gradient-custom">
     <script src="header.js"></script>
-    <script> document.write(header);</script>
-    <h1>採購首頁</h1>
-
+    <script>document.write(header);</script>
+    <div class="container my-5 p-4 bg-glass rounded">
+      <div class="row g-3 g-md-5">
+        <div class="col-lg-4">
+          <div class="card h-100 card-rounded">
+            <div class="card-header fs-2 fw-bold">未彙整訂單 : 7</div>
+            <div class="card-body">
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary mx-1">新增訂單</a>
+              <a href="#" class="btn btn-primary mx-1">訂單彙整</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100 card-rounded">
+            <div class="card-header fs-2 fw-bold">採購未到貨 : 15</div>
+            <div class="card-body">
+              <p class="card-text">Praesent volutpat volutpat felis sit amet pretium. In accumsan diam a ligula accumsan pulvinar. Nulla ut erat eget elit faucibus eleifend sed vel tellus. Duis non pretium orci.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary mx-1">盤點</a>
+              <a href="#" class="btn btn-primary mx-1">換貨</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100 card-rounded">
+            <div class="card-header fs-2 fw-bold">換貨未到貨 : 2</div>
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary mx-1">換貨到貨</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
       [].forEach.call(document.querySelectorAll('a'), function(elem) {
         if (elem.pathname === window.location.pathname)
