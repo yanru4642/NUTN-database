@@ -68,8 +68,8 @@
       </div>
       <div class="row">
         <div class="col mb-3">
-          <button type="button" class="btn btn-secondary" id="cancelOrderBtn">回主頁</button>
-          <button type="button" class="btn btn-primary" id="createOrderBtn">生成採購單</button>
+          <button type="button" class="btn btn-secondary" id="cancelBtn">回主頁</button>
+          <button type="button" class="btn btn-primary" id="confirmBtn">生成採購單</button>
         </div>
       </div>
 
@@ -77,13 +77,13 @@
     </div>
 
     <script>
-      document.getElementById('cancelOrderBtn').addEventListener('click', function () {
+      document.getElementById('cancelBtn').addEventListener('click', function () {
             if (confirm('放棄修改?') == true) {
             } else {
             }
         });
-      document.getElementById('createOrderBtn').addEventListener('click', function () {
-            alert('新增採購單成功！');
+      document.getElementById('confirmBtn').addEventListener('click', function () {
+            alert('成功！');
         });
     </script>
     <!-- header highlight -->
