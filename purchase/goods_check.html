@@ -38,30 +38,30 @@
             <thead class="table-dark text-center">
               <tr>
                 <th scope="col">採購單ID</th>
-                <th scope="col">廠商名</th>
+                <th scope="col">機型</th>
                 <th scope="col">採購日期</th>
                 <th scope="col">總金額</th>
-                <th scope="col">確認無誤</th>
+                <th scope="col">商品無誤</th>
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
               <tr>
                 <td>0001</td>
-                <td>廠商1</td>
+                <td>RAM_50NP</td>
                 <td>2023-12-31 23:59:59</td>
                 <td class="text-end">8000</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
               </tr>
               <tr>
                 <td>0002</td>
-                <td>廠商2</td>
+                <td>RAM_50NP</td>
                 <td>2023-12-31 23:59:59</td>
                 <td class="text-end">55000</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
               </tr>
               <tr>
                 <td>0003</td>
-                <td>廠商3</td>
+                <td>RAM_50NP</td>
                 <td>2023-12-31 23:59:59</td>
                 <td class="text-end">12500</td>
                 <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
@@ -82,8 +82,8 @@
 
     <script>
       document.getElementById('cancelBtn').addEventListener('click', function () {
-            if (confirm('放棄修改?') == true) {
-            } else {
+             if (confirm('放棄修改?') == true) {
+              window.location.href = 'index.html';
             }
         });
       document.getElementById('confirmBtn').addEventListener('click', function () {

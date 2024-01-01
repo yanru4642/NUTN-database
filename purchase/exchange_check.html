@@ -41,7 +41,7 @@
                 <th scope="col">廠商名</th>
                 <th scope="col">採購日期</th>
                 <th scope="col">總金額</th>
-                <th scope="col">確認無誤</th>
+                <th scope="col">商品無誤</th>
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
@@ -83,7 +83,7 @@
     <script>
       document.getElementById('cancelBtn').addEventListener('click', function () {
             if (confirm('放棄修改?') == true) {
-            } else {
+              window.location.href = 'index.html';
             }
         });
       document.getElementById('confirmBtn').addEventListener('click', function () {

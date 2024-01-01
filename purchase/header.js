@@ -1,5 +1,5 @@
 var header="";
-header += "    <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\" >";
+header += "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">";
 header += "      <div class=\"container-fluid\">";
 header += "          <a class=\"navbar-brand \" href=\"index.html\">啟勝電機行<\/a>";
 header += "          <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\">";
@@ -17,6 +17,9 @@ header += "                  <li class=\"nav-item\">";
 header += "                      <a class=\"nav-link\" href=\"new_purchase_order.html\">訂單彙整<\/a>";
 header += "                  <\/li>";
 header += "                  <li class=\"nav-item\">";
+header += "                    <a class=\"nav-link\" href=\"purchasing.html\">採購<\/a>";
+header += "                  <\/li>";
+header += "                  <li class=\"nav-item\">";
 header += "                      <a class=\"nav-link\" href=\"goods_check.html\">盤點確認<\/a>";
 header += "                  <\/li>";
 header += "                  <li class=\"nav-item\">";
@@ -27,7 +30,7 @@ header += "                      <a class=\"nav-link\" href=\"exchange_check.htm
 header += "                  <\/li>";
 header += "              <\/ul>";
 header += "              <span class=\"navbar-text me-3\">採購系統<\/span>";
-header += "              <a href=\"../login.html\">";
+header += "              <a href=\"..\/login.html\">";
 header += "              <button class=\"btn btn-secondary\">登出<\/button>";
 header += "              <\/a>";
 header += "          <\/div>";
