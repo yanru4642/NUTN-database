@@ -12,32 +12,32 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-          <a class="navbar-brand " href="index.html">啟勝電機行</a>
+          <a class="navbar-brand " href="purchase_index.php">啟勝電機行</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                      <a class="nav-link" href="index.html">Home</a>
+                      <a class="nav-link" href="purchase_index.php">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="new_order.html">新增訂單</a>
+                      <a class="nav-link" href="purchase_new_order.php">新增訂單</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="new_purchase_order.html">訂單彙整</a>
+                      <a class="nav-link" href="purchase_new_purchase_order.php">訂單彙整</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="purchasing.html">採購</a>
+                    <a class="nav-link" href="purchase_purchasing.php">採購</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="goods_check.html">盤點確認</a>
+                      <a class="nav-link" href="purchase_goods_check.php">盤點確認</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="exchange.html">換貨</a>
+                      <a class="nav-link" href="purchase_exchange.php">換貨</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="exchange_check.html">換貨到貨</a>
+                      <a class="nav-link" href="purchase_exchange_check.php">換貨到貨</a>
                   </li>
               </ul>
               <span class="navbar-text me-3">採購系統</span>
