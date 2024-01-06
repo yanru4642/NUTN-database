@@ -41,9 +41,7 @@
                   </li>
               </ul>
               <span class="navbar-text me-3">採購系統</span>
-              <a href="../login.html">            
               <a href="logout.php" class="btn btn-secondary">登出</a>
-
               </a>
           </div>
       </div>
@@ -95,8 +93,8 @@ session_destroy();
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
-              <a href="new_order.html" class="btn btn-primary mx-1">新增訂單</a>
-              <a href="new_purchase_order.html" class="btn btn-primary mx-1">訂單彙整</a>
+              <a href="purchase_new_order.php" class="btn btn-primary mx-1">新增訂單</a>
+              <a href="purchase_new_purchase_order.php" class="btn btn-primary mx-1">訂單彙整</a>
             </div>
           </div>
         </div>
@@ -107,7 +105,7 @@ session_destroy();
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
-              <a href="purchasing.html" class="btn btn-primary mx-1">採購</a>
+              <a href="purchase_purchasing.php" class="btn btn-primary mx-1">採購</a>
             </div>
           </div>
         </div>
@@ -119,7 +117,7 @@ session_destroy();
             </div>
             <div class="card-footer">
               <a href="goods_check.html" class="btn btn-primary mx-1">盤點</a>
-              <a href="exchange.html" class="btn btn-primary mx-1">換貨</a>
+              <a href="purchase_exchange.php" class="btn btn-primary mx-1">換貨</a>
             </div>
           </div>
         </div>
@@ -131,7 +129,7 @@ session_destroy();
               <p class="card-text"></p>
             </div>
             <div class="card-footer">
-              <a href="exchange_check.html" class="btn btn-primary mx-1">換貨到貨</a>
+              <a href="purchase_exchange_check.php" class="btn btn-primary mx-1">換貨到貨</a>
              
             </div>
           </div>
