@@ -26,7 +26,7 @@
   </head>
   <body class="min-vh-100 gradient-custom">
     <!-- header -->
-    <script src="header.js"></script>
+    <script src="purchase_header.js"></script>
     <script> document.write(header);</script>
 
     <div class="container rounded bg-glass">

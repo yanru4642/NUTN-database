@@ -1,63 +1,10 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='../css/bootstrap.css'>
-    
-    <title>Database</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-          <a class="navbar-brand " href="purchase_index.php">啟勝電機行</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_index.php">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_new_order.php">新增訂單</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_new_purchase_order.php">訂單彙整</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="purchase_purchasing.php">採購</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_goods_check.php">盤點確認</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_exchange.php">換貨</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="purchase_exchange_check.php">換貨到貨</a>
-                  </li>
-              </ul>
-              <span class="navbar-text me-3">採購系統</span>
-              <a href="logout.php" class="btn btn-secondary">登出</a>
-              </a>
-          </div>
-      </div>
-  </nav>
-    <!-- Bootstrap JS -->
-    <script src="../js/bootstrap.bundle.js"></script>
-  </body>
-</html>
-<!doctype html>
-<html lang="zh-Hant-TW">
-  <head>
   <?php 
 session_start(); 
 $_SESSION = array(); 
 session_destroy(); 
-
 ?>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -82,7 +29,7 @@ session_destroy();
     <title>Database</title>
   </head>
   <body class="min-vh-100 gradient-custom">
-    <script src="header.js"></script>
+    <script src="purchase_header.js"></script>
     <script>document.write(header);</script>
     <div class="container my-5 p-4 bg-glass rounded">
       <div class="row g-3 g-md-5">
