@@ -30,7 +30,7 @@ header += "                      <a class=\"nav-link\" href=\"purchase_exchange_
 header += "                  <\/li>";
 header += "              <\/ul>";
 header += "              <span class=\"navbar-text me-3\">採購系統<\/span>";
-header += "              <a href=\"test.php\">";
+header += "              <a href=\"logout.php\">";
 header += "              <button class=\"btn btn-secondary\">登出<\/button>";
 header += "              <\/a>";
 header += "          <\/div>";
