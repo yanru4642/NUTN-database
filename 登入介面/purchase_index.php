@@ -63,7 +63,7 @@ session_destroy();
               <p class="card-text">Praesent volutpat volutpat felis sit amet pretium. In accumsan diam a ligula accumsan pulvinar. Nulla ut erat eget elit faucibus eleifend sed vel tellus. Duis non pretium orci.</p>
             </div>
             <div class="card-footer">
-              <a href="goods_check.html" class="btn btn-primary mx-1">盤點</a>
+              <a href="purchase_goods_check.php" class="btn btn-primary mx-1">盤點</a>
               <a href="purchase_exchange.php" class="btn btn-primary mx-1">換貨</a>
             </div>
           </div>
