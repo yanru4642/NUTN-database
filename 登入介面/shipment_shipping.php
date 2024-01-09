@@ -31,6 +31,20 @@
 
     <div class="container rounded bg-glass">
       <h1 class="my-5 pt-3">出貨</h1>
+      <?php
+          session_start(); 
+          include_once 'config.php';
+
+          if(isset($_SESSION['message'])) {
+              echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
+              unset($_SESSION['message']);
+          }
+
+          $sql = "SELECT O_ID, C_ID, O_Date FROM `order`  WHERE O_State = '已備貨'";
+          $result = $link->query($sql);
+        ?>
+
+      <form method="post" action="update_shipping.php">
       <div class="row mb-5">
         <div class="table-responsive">
           <table class="table table-striped table-hover table-bordered caption-top">
@@ -45,27 +59,35 @@
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
-              <tr>
-                <td>0001</td>
-                <td>客戶1</td>
-                <td>2023-12-24 10:45:00</td>
-                <td class="text-end">8000</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
-              <tr>
-                <td>0002</td>
-                <td>客戶2</td>
-                <td>2023-12-24 12:30:00</td>
-                <td class="text-end">55000</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
-              <tr>
-                <td>0003</td>
-                <td>客戶3</td>
-                <td>2023-12-24 15:40:30</td>
-                <td class="text-end">12500</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
+            <?php
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {  
+        echo "<tr>";
+        echo "<td>" . $row["O_ID"]. "</td>";
+
+        $CID=$row["C_ID"];
+        $sql2 = "SELECT C_Name FROM `customer`  WHERE C_ID ='$CID' ";
+        $result2 = $link->query($sql2);
+        if ($result2->num_rows > 0) {
+          while($row2 = $result2->fetch_assoc()) {  
+        echo "<td class='text-end'>" . $row2["C_Name"]. "</td>";}}
+
+        echo "<td>" . $row["O_Date"]. "</td>";
+
+        $OID=$row["O_ID"];       
+        $sql1 = "SELECT O_TotalAmountOfTheItem FROM `addinorder`  WHERE O_ID ='$OID' ";
+        $result1 = $link->query($sql1);
+        if ($result1->num_rows > 0) {
+          while($row1 = $result1->fetch_assoc()) {  
+        echo "<td class='text-end'>" . $row1["O_TotalAmountOfTheItem"]. "</td>";}}
+        echo "<td><input class='form-check-input' type='checkbox' name='selectedOrder[]' value='" . $OID . "'></td>";
+        echo "</tr>";
+        }
+        } else {
+        echo "0 results";}
+        $link->close();
+        ?>
             </tbody>
           </table>
         </div>
@@ -73,9 +95,11 @@
       <div class="row">
         <div class="col mb-3">
           <button type="button" class="btn btn-secondary" id="cancelBtn">回主頁</button>
-          <button type="button" class="btn btn-primary" id="confirmBtn">確認</button>
+          <button type="submit" class="btn btn-primary" id="confirmBtn">確認出貨</button>
         </div>
       </div>
+
+      </form>
 
       
     </div>
@@ -86,9 +110,7 @@
               window.location.href = 'shipment_index.php';
             }
         });
-      document.getElementById('confirmBtn').addEventListener('click', function () {
-            alert('成功！');
-        });
+      
     </script>
     <!-- header highlight -->
     <script>
