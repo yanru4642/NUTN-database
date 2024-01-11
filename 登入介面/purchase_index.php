@@ -35,9 +35,8 @@ session_destroy();
       <div class="row g-3 g-md-5">
         <div class="col-lg-3">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">未彙整訂單: 7</div>
+            <div class="card-header fs-2 fw-bold">未彙整訂單</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
               <a href="purchase_new_order.php" class="btn btn-primary mx-1">新增訂單</a>
@@ -47,9 +46,8 @@ session_destroy();
         </div>
         <div class="col-lg-3">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">未採購: 8</div>
+            <div class="card-header fs-2 fw-bold">未採購</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
               <a href="purchase_purchasing.php" class="btn btn-primary mx-1">採購</a>
@@ -58,9 +56,8 @@ session_destroy();
         </div>
         <div class="col-lg-3">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">採購未到貨: 15</div>
+            <div class="card-header fs-2 fw-bold">採購未到貨</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Praesent volutpat volutpat felis sit amet pretium. In accumsan diam a ligula accumsan pulvinar. Nulla ut erat eget elit faucibus eleifend sed vel tellus. Duis non pretium orci.</p>
             </div>
             <div class="card-footer">
               <a href="purchase_goods_check.php" class="btn btn-primary mx-1">盤點</a>
@@ -70,10 +67,8 @@ session_destroy();
         </div>
         <div class="col-lg-3">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">換貨未到貨: 2</div>
+            <div class="card-header fs-2 fw-bold">換貨未到貨</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Nam ipsum elit, vehicula imperdiet tempus vel, porttitor vestibulum justo. Donec vitae egestas arcu, sed sollicitudin velit. Aenean blandit elementum justo sed fermentum.</p>
-              <p class="card-text"></p>
             </div>
             <div class="card-footer">
               <a href="purchase_exchange_check.php" class="btn btn-primary mx-1">換貨到貨</a>
@@ -81,6 +76,18 @@ session_destroy();
             </div>
           </div>
         </div>
+        <div class="col-lg-3">
+  <div class="card h-100 card-rounded">
+    <div class="card-header fs-2 fw-bold">建檔</div>
+    <div class="card-body font-monospace"></div>
+    <div class="card-footer">
+      <a href="customer.php" class="btn btn-primary mx-1 mb-2">客戶建檔</a>
+      <a href="manufacturer.php" class="btn btn-primary mx-1 mb-2">廠商建檔</a>
+      <a href="air_conditioning.php" class="btn btn-primary mx-1 mb-2">冷氣商品建檔</a>
+    </div>
+  </div>
+</div>
+
       </div>
       
     </div>
