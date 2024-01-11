@@ -40,7 +40,7 @@
               unset($_SESSION['message']);
           }
 
-          $sql = "SELECT P_ID, Model, P_Quantity, P_TotalAmountOfTheItem FROM purchase WHERE P_State != '已採購'";
+          $sql = "SELECT P_ID, Model, P_Quantity, P_TotalAmountOfTheItem, P_State FROM purchase WHERE P_State = '未採購'";
           $result = $link->query($sql);
         ?>
 
@@ -56,6 +56,7 @@
                                 <th scope="col">機型</th>
                                 <th scope="col">數量</th>
                                 <th scope="col">總金額</th>
+                                <th scope="col">狀態</th>
                                 <th scope="col">採購完成</th>
                             </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                     echo "<td>" . $row["Model"]. "</td>";
                                     echo "<td>" . $row["P_Quantity"]. "</td>";
                                     echo "<td class='text-end'>" . $row["P_TotalAmountOfTheItem"]. "</td>";
+                                    echo "<td>" . $row["P_State"]. "</td>";
                                     echo "<td><input class='form-check-input' type='checkbox' name='selectedPurchases[]' value='" . $row["P_ID"] . "'></td>";
                                     echo "</tr>";
                                 }

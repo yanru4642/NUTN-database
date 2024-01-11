@@ -39,6 +39,7 @@
     echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
     unset($_SESSION['message']);
   }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['selectedExchange'])) {
       $updated_ids = [];
@@ -57,7 +58,7 @@
           $row = $result->fetch_assoc();
           $reorderId = 'R' . str_pad($row['total_records'] + 1, 4, '0', STR_PAD_LEFT);
         }
-        $sql = "INSERT INTO reorder (R_ID, D_State, R_Quantity, P_ID) VALUES ('$reorderId', '未換貨','$reorderNum','$purchaseId')";
+        $sql = "INSERT INTO reorder (R_ID, D_State, R_Quantity, P_ID) VALUES ('$reorderId', '換貨中','$reorderNum','$purchaseId')";
         $link->query($sql);
 
         //修改訂單為換貨中
@@ -65,6 +66,11 @@
         if ($link->query($sql) === TRUE) {
           array_push($updated_ids, $purchaseId);
         }
+
+        $sql = "UPDATE reorder SET D_State = '換貨中' WHERE P_ID = '" . $purchaseId . "'";
+
+        
+
       }
       if (count($updated_ids) > 0) {
         $_SESSION['message'] = "換貨中採購單: " . implode(", ", $updated_ids);
@@ -77,6 +83,7 @@
 
   <div class="container rounded bg-glass">
     <h1 class="my-5 pt-3">換貨</h1>
+
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <div class="row mb-5">
         <div class="table-responsive">
@@ -89,12 +96,13 @@
                 <th scope="col">數量</th>
                 <th scope="col">總金額</th>
                 <th scope="col">採購日期</th>
+                <th scope="col">狀態</th>
                 <th scope="col">商品有誤</th>
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
               <?php
-              $sql = "SELECT P_ID, Model, P_Quantity, P_TotalAmountOfTheItem, P_ArrivalDate FROM purchase WHERE P_State = '已採購'";
+              $sql = "SELECT P_ID, Model, P_Quantity, P_TotalAmountOfTheItem, P_ArrivalDate, P_State FROM purchase WHERE P_State = '已採購' or P_State = '換貨到貨'";
               $result = $link->query($sql);
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -104,6 +112,7 @@
                   echo "<td>" . $row["P_Quantity"] . "</td>";
                   echo "<td class='text-end'>" . $row["P_TotalAmountOfTheItem"] . "</td>";
                   echo "<td>" . $row["P_ArrivalDate"] . "</td>";
+                  echo "<td>" . $row["P_State"]. "</td>";
                   echo "<td><input class='form-check-input' type='checkbox' name='selectedExchange[]' value='" . $row["P_ID"] . "'></td>";
                   echo "</tr>";
                 }

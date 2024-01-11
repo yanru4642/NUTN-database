@@ -44,7 +44,7 @@
       $updated_ids = [];
       foreach ($_POST['selectedExchange'] as $reorderId) {
         //update reorder
-        $sql = "UPDATE reorder SET D_State = '已換貨' WHERE R_ID = '" . $reorderId . "'";
+        $sql = "UPDATE reorder SET D_State = '換貨到貨' WHERE R_ID = '" . $reorderId . "'";
         $result = $link->query($sql);
         //update purchase order
         $sql = "SELECT `P_ID` FROM `reorder` WHERE R_ID = '" . $reorderId . "'";
@@ -53,7 +53,7 @@
           $row = $result->fetch_assoc();
           $purchaseId = $row['P_ID'];
         }
-        $sql = "UPDATE purchase SET P_State = '採購到貨' WHERE P_ID = '" . $purchaseId . "'";
+        $sql = "UPDATE purchase SET P_State = '換貨到貨' WHERE P_ID = '" . $purchaseId . "'";
         if ($link->query($sql) === TRUE) {
           array_push($updated_ids, $purchaseId);
         }
@@ -79,12 +79,13 @@
                 <th scope="col">換貨單ID</th>
                 <th scope="col">採購單ID</th>
                 <th scope="col">數量</th>
+                <th scope="col">狀態</th>
                 <th scope="col">商品無誤</th>
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
               <?php
-              $sql = "SELECT R_ID, P_ID, R_Quantity FROM reorder WHERE D_State = '未換貨' ";
+              $sql = "SELECT R_ID, P_ID, R_Quantity, D_State FROM reorder WHERE D_State = '換貨中' ";
               $result = $link->query($sql);
               if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -92,6 +93,7 @@
                   echo "<td>" . $row["R_ID"] . "</td>";
                   echo "<td>" . $row["P_ID"] . "</td>";
                   echo "<td>" . $row["R_Quantity"] . "</td>";
+                  echo "<td>" . $row["D_State"] . "</td>";
                   echo "<td><input class='form-check-input' type='checkbox' name='selectedExchange[]' value='" . $row["R_ID"] . "'></td>";
                   echo "</tr>";
                 }

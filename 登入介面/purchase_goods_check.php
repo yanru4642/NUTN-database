@@ -31,57 +31,73 @@
 
     <div class="container rounded bg-glass">
       <h1 class="my-5 pt-3">盤點確認</h1>
-      <div class="row mb-5">
-        <div class="table-responsive">
-          <table class="table table-striped table-hover table-bordered caption-top">
-            <caption class="fs-3">採購單列表</caption>
-            <thead class="table-dark text-center">
-              <tr>
-                <th scope="col">採購單ID</th>
-                <th scope="col">機型</th>
-                <th scope="col">採購日期</th>
-                <th scope="col">總金額</th>
-                <th scope="col">商品無誤</th>
-              </tr>
-            </thead>
-            <tbody class="font-monospace text-center">
-              <tr>
-                <td>0001</td>
-                <td>RAM_50NP</td>
-                <td>2023-12-31 23:59:59</td>
-                <td class="text-end">8000</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
-              <tr>
-                <td>0002</td>
-                <td>RAM_50NP</td>
-                <td>2023-12-31 23:59:59</td>
-                <td class="text-end">55000</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
-              <tr>
-                <td>0003</td>
-                <td>RAM_50NP</td>
-                <td>2023-12-31 23:59:59</td>
-                <td class="text-end">12500</td>
-                <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col mb-3">
-          <button type="button" class="btn btn-secondary" id="cancelBtn">回主頁</button>
-          <button type="button" class="btn btn-primary" id="confirmBtn">盤點確認</button>
-          <script>
-  document.getElementById('cancelBtn').addEventListener('click', function () {
-    window.location.href = 'purchase_index.php'; // 修改跳转的页面地址
-  });
-</script>
-        </div>
-      </div>
+        <?php
+          session_start(); 
+          include_once 'config.php';
 
+          if(isset($_SESSION['message'])) {
+              echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
+              unset($_SESSION['message']);
+          }
+
+          $sql = "SELECT P_ID, Model, P_Quantity, P_TotalAmountOfTheItem, P_State FROM purchase WHERE P_State = '已採購' or P_State = '換貨到貨'";
+          
+          $result = $link->query($sql);
+
+        ?>
+
+          
+        <form method="post" action="update_goods_check.php">
+          <div class="row mb-5">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover table-bordered caption-top">
+                <caption class="fs-3">採購單列表</caption>
+                <thead class="table-dark text-center">
+                  <tr>
+                    <th scope="col">採購單ID</th>
+                    <th scope="col">機型</th>
+                    <th scope="col">數量</th>
+                    <th scope="col">總金額</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">商品無誤</th>
+                  </tr>
+                </thead>
+                <tbody class="font-monospace text-center">
+                  <?php
+
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["P_ID"]. "</td>";
+                            echo "<td>" . $row["Model"]. "</td>";
+                            echo "<td>" . $row["P_Quantity"]. "</td>";
+                            echo "<td class='text-end'>" . $row["P_TotalAmountOfTheItem"]. "</td>";
+                            echo "<td>" . $row["P_State"]. "</td>";
+                            echo "<td><input class='form-check-input' type='checkbox' name='selectedGoodCheck[]' value='" . $row["P_ID"] . "'></td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    $link->close();
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col mb-3">
+              <button type="button" class="btn btn-secondary" id="cancelBtn">回主頁</button>
+              <button type="submit" class="btn btn-primary" id="confirmBtn">盤點確認</button>
+              <!--<script>
+                document.getElementById('cancelBtn').addEventListener('click', function () {
+                  window.location.href = 'purchase_index.php'; // 修改跳转的页面地址
+                });
+              </script>-->
+            </div>
+          </div>
+        </form>       
       
     </div>
 
@@ -91,9 +107,11 @@
               window.location.href = 'purchase_index.php';
             }
         });
+      /*
       document.getElementById('confirmBtn').addEventListener('click', function () {
             alert('成功！');
         });
+      */
     </script>
     <!-- header highlight -->
     <script>
