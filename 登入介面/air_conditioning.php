@@ -63,10 +63,8 @@
 
 <body class="min-vh-100 gradient-custom">
     <!-- header -->
-    <script src="header.js"></script>
-    <script>
-        document.write(header);
-    </script>
+    <script src="purchase_header.js"></script>
+    <script>document.write(header);</script>
     <div class="container rounded bg-glass">
         <h1 class="my-5 pt-3">建立冷氣商品資料</h1>
         <div class="row mb-5">
