@@ -31,6 +31,20 @@
 
     <div class="container rounded bg-glass">
       <h1 class="my-5 pt-3">訂單彙整</h1>
+
+        <?php
+            session_start(); 
+            include_once 'config.php';
+
+            if(isset($_SESSION['message'])) {
+                echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
+                unset($_SESSION['message']);
+            }
+
+            $sql = "SELECT O_ID, O_Date, O_State, C_ID FROM `order` WHERE O_State = '新訂單'";
+            $result = $link->query($sql);
+        ?>
+
       <div class="row mb-5">
         <div class="table-responsive">
           <table class="table table-striped table-hover table-bordered caption-top">
@@ -38,34 +52,40 @@
             <thead class="table-dark text-center">
               <tr>
                 <th scope="col">訂單ID</th>
-                <th scope="col">客戶名</th>
+                <th scope="col">客戶ID</th>
                 <th scope="col">建立日期</th>
                 <th scope="col">訂單總金額</th>
                 <th scope="col">訂單狀態</th>
+                <th scope="col">生成採購</th>
+
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
-              <tr>
-                <td>0001</td>
-                <td>客戶1</td>
-                <td>2023-12-24 10:45:00</td>
-                <td class="text-end">8000</td>
-                <td>未到貨</td>
-              </tr>
-              <tr>
-                <td>0002</td>
-                <td>客戶2</td>
-                <td>2023-12-24 12:30:00</td>
-                <td class="text-end">55000</td>
-                <td>未到貨</td>
-              </tr>
-              <tr>
-                <td>0003</td>
-                <td>客戶3</td>
-                <td>2023-12-24 15:40:30</td>
-                <td class="text-end">12500</td>
-                <td>未到貨</td>
-              </tr>
+              <?php
+                include_once 'config.php';
+                $sql = "SELECT `order`.O_ID, `order`.O_Date, `order`.O_State, `order`.C_ID, addinorder.O_TotalAmountOfTheItem 
+                FROM `order`
+                JOIN addinorder ON `order`.O_ID = addinorder.O_ID
+                WHERE `order`.O_State = '新訂單'";
+        
+                $result = $link->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["O_ID"]. "</td>";
+                        echo "<td>" . $row["C_ID"]. "</td>";
+                        echo "<td>" . $row["O_Date"]. "</td>";
+                        echo "<td class='text-end'>" . $row["O_TotalAmountOfTheItem"]. "</td>";
+                        echo "<td>" . $row["O_State"]. "</td>";
+                        echo "<td><input class='form-check-input' type='checkbox' name='selectedOrder[]' value='" . $row["O_ID"] . "'></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "0 results";
+                }
+                $link->close();
+              ?>
             </tbody>
           </table>
         </div>
