@@ -62,7 +62,7 @@
     }
 
     //new order 
-    $sql = "INSERT INTO `order`(`O_ID`, `O_Date`, `E_ID`, `O_State`, `C_ID`) VALUES ('$orderId', '$currentDate','$employeeID','未到貨','$customerID')";
+    $sql = "INSERT INTO `order`(`O_ID`, `O_Date`, `E_ID`, `O_State`, `C_ID`) VALUES ('$orderId', '$currentDate','$employeeID','新訂單','$customerID')";
     $result = $link->query($sql);
     if ($result) {
       $_SESSION['message'] = "新增訂單成功，訂單ID: " . $orderId;
