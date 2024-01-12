@@ -30,9 +30,8 @@
       <div class="row g-3 g-md-5">
         <div class="col-lg-6">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">可備貨訂單: 7</div>
+            <div class="card-header fs-2 fw-bold">可備貨訂單</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
               <a href="shipment_stock_up.php" class="btn btn-primary mx-1">備貨</a>
@@ -41,9 +40,8 @@
         </div>
         <div class="col-lg-6">
           <div class="card h-100 card-rounded">
-            <div class="card-header fs-2 fw-bold">可出貨訂單: 8</div>
+            <div class="card-header fs-2 fw-bold">可出貨訂單</div>
             <div class="card-body font-monospace">
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam congue erat sit amet felis pellentesque interdum.</p>
             </div>
             <div class="card-footer">
               <a href="shipment_shipping.php" class="btn btn-primary mx-1">出貨</a>
