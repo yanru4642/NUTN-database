@@ -41,7 +41,7 @@
   }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //E_ID
-    $employeeID = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'E0001';
+    $employeeID = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'E0002';
     // Count number of reorder records
     $sql = "SELECT COUNT(*) AS total_records FROM `order`";
     $result = $link->query($sql);
