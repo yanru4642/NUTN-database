@@ -116,10 +116,17 @@
             <tbody class="font-monospace text-center">
               <?php
               include_once 'config.php';
-              $sql = "SELECT `order`.O_ID, `order`.O_Date, `order`.O_State, `order`.C_ID, addinorder.O_TotalAmountOfTheItem 
-                FROM `order`
-                JOIN addinorder ON `order`.O_ID = addinorder.O_ID
-                WHERE `order`.O_State = '新訂單'";
+              $sql = "SELECT
+              `order`.O_ID,
+              `order`.O_Date,
+              `order`.O_State,
+              `addinorder`.Model,
+              `addinorder`.O_TotalAmountOfTheItem
+              FROM
+              `order`
+              NATURAL JOIN addinorder
+              WHERE
+              `order`.O_State = '新訂單'";
 
               $result = $link->query($sql);
 
@@ -127,14 +134,7 @@
                 while ($row = $result->fetch_assoc()) {
                   echo "<tr>";
                   echo "<td>" . $row["O_ID"] . "</td>";
-                  $OID = $row["O_ID"];
-                  $sql2 = "SELECT Model FROM `addinorder`  WHERE O_ID ='$OID' ";
-                  $result2 = $link->query($sql2);
-                  if ($result2->num_rows > 0) {
-                    while ($row2 = $result2->fetch_assoc()) {
-                      echo "<td class='text-end'>" . $row2["Model"] . "</td>";
-                    }
-                  }
+                  echo "<td class='text-end'>" . $row["Model"] . "</td>";
                   echo "<td>" . $row["O_Date"] . "</td>";
                   echo "<td class='text-end'>" . $row["O_TotalAmountOfTheItem"] . "</td>";
                   echo "<td>" . $row["O_State"] . "</td>";
