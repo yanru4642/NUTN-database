@@ -39,49 +39,53 @@
     echo "<div class='alert alert-success'>" . $_SESSION['message'] . "</div>";
     unset($_SESSION['message']);
   }
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST['selectedOrder'])) {
-      $updated_ids = [];
-      foreach ($_POST['selectedOrder'] as $orderId) {
-        $sql = "UPDATE `order` SET O_State = '未到貨' WHERE O_ID = '" . $orderId . "'";
-        $result = $link->query($sql);
-
-
-        $sql = "SELECT `Model`, `O_Quantity`, `O_TotalAmountOfTheItem` FROM `addinorder`WHERE O_ID = '" . $orderId . "'";
-        $result = $link->query($sql);
-        if ($result) {
-          $row = $result->fetch_assoc();
-          $model = $row['Model'];
-          $quantity = $row['O_Quantity'];
-          $amount = $row['O_TotalAmountOfTheItem'];
-        }
-        //date
-        $date = date('Y-m-d');
-
-        $sql = "SELECT COUNT(*) AS total_records FROM purchase";
-        $result = $link->query($sql);
-        if ($result) {
-          $row = $result->fetch_assoc();
-          $purchaseId = 'P' . str_pad($row['total_records'] + 1, 4, '0', STR_PAD_LEFT);
-        }
-        //E_ID
-        $employeeID = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'E0002';
-        //採購單
-        $sql = "INSERT INTO purchase (P_ID, P_PurchaseDate, P_ArrivalDate, P_State, E_ID, Model	,P_Quantity, P_TotalAmountOfTheItem) VALUES ('$purchaseId', '$date',' ','未採購','$employeeID', '$model','$quantity','$amount')";
+    $updated_ids = [];
+    //將新訂單以機型分類並計算個數，得到Model列表
+    $sql = "SELECT Model,SUM(O_Quantity),SUM(`O_TotalAmountOfTheItem`)
+      FROM `order` NATURAL JOIN addinorder WHERE `order`.O_State = '新訂單' GROUP by Model";
+    $result = $link->query($sql);
+    while ($row = $result->fetch_assoc()) {
+      $Model = $row['Model'];
+      $P_Quantity = $row['SUM(O_Quantity)'];
+      $P_TotalAmountOfTheItem = $row['SUM(`O_TotalAmountOfTheItem`)'];
+      //取得P_ID
+      $sql = "SELECT COUNT(*) AS total_records FROM purchase";
+      $result2 = $link->query($sql);
+      if ($result2) {
+        $row2 = $result2->fetch_assoc();
+        $P_ID = 'P' . str_pad($row2['total_records'] + 1, 4, '0', STR_PAD_LEFT);
+      }
+      //取得date
+      $date = date('Y-m-d');
+      //取得員工ID
+      $employeeID = isset($_SESSION['userID']) ? $_SESSION['userID'] : 'E0001';
+      //取每筆Model,SUM(O_Quantity),SUM(`O_TotalAmountOfTheItem`)，新增purchase
+      $sql = "INSERT INTO 
+        `purchase`(  `P_ID`,  `P_PurchaseDate`,  `P_ArrivalDate`,  `P_State`,  `E_ID`,  `Model`,  `P_Quantity`,  `P_TotalAmountOfTheItem`)
+        VALUES(  '$P_ID',  '$date',  ' ',  '未採購',  '$employeeID',  '$Model',  '$P_Quantity',  '$P_TotalAmountOfTheItem')";
+      $result3 = $link->query($sql);
+      if ($result3) {
+        array_push($updated_ids, $P_ID);
+      }
+      //取每筆Model，反向取得包含該商品的訂單列表
+      $sql = "SELECT O_ID FROM `order` NATURAL JOIN addinorder 
+        WHERE `order`.O_State = '新訂單' AND Model = '$Model'  ";
+      $result4 = $link->query($sql);
+      while ($row4 = $result4->fetch_assoc()) {
+        $O_ID = $row4['O_ID'];
+        $sql = "INSERT INTO `consolidateorders`(`O_ID`, `P_ID`)
+          VALUES('$O_ID', '$P_ID')";
         $link->query($sql);
-
-        //
-        $sql = "INSERT INTO consolidateorders (O_ID, P_ID) VALUES ('$orderId','$purchaseId')";
-        $result = $link->query($sql);
-        if ($result === TRUE) {
-          array_push($updated_ids, $purchaseId);
-        }
-
-
       }
-      if (count($updated_ids) > 0) {
-        $_SESSION['message'] = "成功生成採購單 " . implode(", ", $updated_ids);
-      }
+    }
+    //將新訂單狀態改為未到貨
+    $sql = "UPDATE `order` SET O_State = '未到貨' WHERE O_State = '新訂單'";
+    $link->query($sql);
+    //顯示訊息
+    if (count($updated_ids) > 0) {
+      $_SESSION['message'] = "成功生成採購單 " . implode(", ", $updated_ids);
     }
     header("Location: purchase_new_purchase_order.php");
     exit;
@@ -107,10 +111,8 @@
                 <th scope="col">訂單ID</th>
                 <th scope="col">商品</th>
                 <th scope="col">建立日期</th>
-                <th scope="col">訂單總金額</th>
-                <th scope="col">訂單狀態</th>
-                <th scope="col">生成採購</th>
-
+                <th scope="col">數量</th>
+                <th scope="col">金額</th>
               </tr>
             </thead>
             <tbody class="font-monospace text-center">
@@ -121,6 +123,7 @@
               `order`.O_Date,
               `order`.O_State,
               `addinorder`.Model,
+              `addinorder`.O_Quantity,
               `addinorder`.O_TotalAmountOfTheItem
               FROM
               `order`
@@ -134,11 +137,10 @@
                 while ($row = $result->fetch_assoc()) {
                   echo "<tr>";
                   echo "<td>" . $row["O_ID"] . "</td>";
-                  echo "<td class='text-end'>" . $row["Model"] . "</td>";
+                  echo "<td>" . $row["Model"] . "</td>";
                   echo "<td>" . $row["O_Date"] . "</td>";
+                  echo "<td class='text-end'>" . $row["O_Quantity"] . "</td>";
                   echo "<td class='text-end'>" . $row["O_TotalAmountOfTheItem"] . "</td>";
-                  echo "<td>" . $row["O_State"] . "</td>";
-                  echo "<td><input class='form-check-input' type='checkbox' name='selectedOrder[]' value='" . $row["O_ID"] . "'></td>";
                   echo "</tr>";
                 }
               } else {
